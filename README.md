@@ -54,11 +54,11 @@
 
 RAG 核心特性实战：
 
-![RAG 核心特性实战](https://pic.yupi.icu/1/1745224085267-57afea3b-2de9-44a0-8f53-49e338c0e6b9.png)
+![RAG 核心特性实战](image/img.png)
 
 项目架构设计图：
 
-![AI 智能体架构图](https://pic.yupi.icu/1/AI%E6%99%BA%E8%83%BD%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
+![AI 智能体架构图](image/img_1.png)
 
 
 __________________________________________________
