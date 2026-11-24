@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: zl-image-search-mcp-server
+  profiles:
+    active: sse
+server:
+  port: 8127
+pexels:
+  # 优先读环境变量 PEXELS_API_KEY
+  api-key: ${PEXELS_API_KEY:}

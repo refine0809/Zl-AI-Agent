@@ -1,0 +1,48 @@
+# 生产环境配置（由 spring.profiles.active=prod 激活）
+# 敏感信息请用环境变量注入，不要写进仓库
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/zl_ai_agent}
+    username: ${SPRING_DATASOURCE_USERNAME:zl_ai}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+  ai:
+    dashscope:
+      api-key: ${SPRING_AI_DASHSCOPE_API_KEY:}
+      chat:
+        options:
+          model: qwen-plus
+    mcp:
+      client:
+        # 图片搜索 MCP（SSE，需先启动 zl-image-search-mcp-server）
+        sse:
+          connections:
+            zl-image-search:
+              url: ${MCP_IMAGE_SEARCH_URL:http://127.0.0.1:8127}
+        # 高德地图等 stdio MCP：把 mcp-servers-linux.json 拷到服务器并填好 Key 后取消下面两行注释
+        # stdio:
+        #   servers-configuration: file:/www/wwwroot/zl-ai-agent/mcp-servers.json
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        dimensions: 1536
+        distance-type: COSINE_DISTANCE
+        max-document-batch-size: 10000
+
+server:
+  port: ${SERVER_PORT:8123}
+  servlet:
+    context-path: /api
+
+search-api:
+  # 服务器启动前务必在 .env 中设置 SEARCH_API_API_KEY
+  api-key: ${SEARCH_API_API_KEY:}
+
+logging:
+  level:
+    root: INFO
+    org.springframework.ai: INFO
+    com.zl: INFO
+
+knife4j:
+  enable: false
